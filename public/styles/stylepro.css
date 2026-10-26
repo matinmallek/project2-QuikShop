@@ -1,0 +1,1922 @@
+```css
+
+/* لرزش ظریف لوگوی وسط هدر */
+@keyframes logoMicroShake {
+    0%, 100% {
+        transform: translateX(0) rotate(0);
+    }
+    20% {
+        transform: translateX(-1px) rotate(-0.5deg);
+    }
+    40% {
+        transform: translateX(1px) rotate(0.5deg);
+    }
+    60% {
+        transform: translateX(-1px) rotate(-0.3deg);
+    }
+    80% {
+        transform: translateX(1px) rotate(0.3deg);
+    }
+}
+
+.my_container > div.absolute img[src="imgs/Group 1.svg"] {
+    transition: filter 0.3s ease;
+    transform-origin: center;
+}
+
+.my_container > div.absolute img[src="imgs/Group 1.svg"]:hover {
+    animation: logoMicroShake 0.38s ease-in-out;
+    filter: drop-shadow(0 0 7px rgb(249 115 22 / 35%));
+}
+
+
+/* خط زیر لینک‌های منوی اصلی */
+nav > ul > li > a::after,
+nav > ul > li.group > a::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -7px;
+    width: 100%;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(
+        90deg,
+        #fb923c,
+        #f97316,
+        #fdba74
+    );
+    box-shadow: 0 0 8px rgb(249 115 22 / 35%);
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 0.38s cubic-bezier(.22, 1, .36, 1);
+}
+
+/* نمایش خط در هاور و فوکوس */
+nav > ul > li > a:hover::after,
+nav > ul > li > a:focus-visible::after,
+nav > ul > li.group > a:hover::after,
+nav > ul > li.group > a:focus-visible::after,
+nav > ul > li > a.active::after {
+    transform: scaleX(1);
+}
+
+/* رنگ خط صفحه فعال */
+nav > ul > li > a.active::after {
+    box-shadow:
+        0 0 6px rgb(249 115 22 / 40%),
+        0 0 14px rgb(249 115 22 / 15%);
+}
+
+/* ========================================
+   PREMIUM STORE UI EFFECTS
+======================================== */
+
+@layer components {
+
+    /* هدر شیشه‌ای */
+    section.fixed.z-40 {
+        transition:
+            background-color 0.4s ease,
+            backdrop-filter 0.4s ease;
+    }
+
+    /* دکمه‌های هدر */
+    #toggle-theme-btn,
+    .shopping_card_btn,
+    .burger_btn,
+    button.border-orange-500 {
+        transition:
+            color 0.3s ease,
+            background-color 0.3s ease,
+            border-color 0.3s ease,
+            box-shadow 0.35s ease,
+            transform 0.3s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    #toggle-theme-btn:hover,
+    .shopping_card_btn:hover {
+        transform: translateY(-3px);
+        border-color: #f97316;
+        box-shadow:
+            0 5px 12px rgb(249 115 22 / 12%),
+            0 0 18px rgb(249 115 22 / 10%);
+    }
+
+    #toggle-theme-btn:active,
+    .shopping_card_btn:active {
+        transform: scale(.94);
+    }
+
+    /* منوی اصلی */
+    nav ul li > a {
+        transition:
+            color 0.3s ease,
+            transform 0.3s ease;
+    }
+
+    nav ul li > a:hover {
+        transform: translateY(-2px);
+    }
+
+    nav ul li > a svg {
+        transition:
+            transform 0.35s ease,
+            filter 0.35s ease;
+    }
+
+    nav ul li > a:hover svg {
+        transform: scale(1.12) rotate(-4deg);
+        filter: drop-shadow(0 0 5px rgb(249 115 22 / 35%));
+    }
+
+    /* زیرمنوی فروشگاه */
+    nav li.group > div {
+        perspective: 1000px;
+        transform-origin: top right;
+        transition:
+            opacity 0.3s ease,
+            visibility 0.3s ease,
+            transform 0.4s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    nav li.group > div > ul {
+        transform: translateY(12px) rotateX(-8deg);
+        transform-origin: top center;
+        opacity: 0;
+        transition:
+            transform 0.4s cubic-bezier(.2, .8, .2, 1),
+            opacity 0.3s ease,
+            box-shadow 0.3s ease;
+        box-shadow:
+            0 15px 35px rgb(0 0 0 / 12%),
+            0 4px 12px rgb(249 115 22 / 5%);
+        border: 1px solid rgb(249 115 22 / 10%);
+    }
+
+    nav li.group:hover > div > ul,
+    nav li.group:focus-within > div > ul {
+        transform: translateY(0) rotateX(0);
+        opacity: 1;
+    }
+
+    nav li.group > div li a {
+        transition:
+            background-color 0.25s ease,
+            color 0.25s ease,
+            padding-right 0.25s ease;
+    }
+
+    nav li.group > div li a:hover {
+        padding-right: 12px;
+    }
+
+    /* منوی کشویی سبد خرید دسکتاپ */
+    .shopping_card_btn > div {
+        perspective: 1200px;
+    }
+
+    .shopping_card_btn > div > div {
+        transform: translateY(12px) rotateX(-5deg) scale(.97);
+        transform-origin: top right;
+        opacity: 0;
+        transition:
+            transform 0.4s cubic-bezier(.2, .8, .2, 1),
+            opacity 0.3s ease,
+            box-shadow 0.3s ease;
+        box-shadow:
+            0 20px 50px rgb(0 0 0 / 16%),
+            0 6px 18px rgb(249 115 22 / 7%);
+        border: 1px solid rgb(249 115 22 / 12%);
+    }
+
+    .shopping_card_btn:hover > div > div,
+    .shopping_card_btn:focus-within > div > div {
+        transform: translateY(0) rotateX(0) scale(1);
+        opacity: 1;
+    }
+
+    /* تصاویر محصولات سبد خرید */
+    .shopping_card_btn > div > div img {
+        transition:
+            transform 0.4s ease,
+            filter 0.4s ease;
+    }
+
+    
+/* دکمه حذف محصول در سبد خرید دسکتاپ */
+.shopping_card_btn .max-h-70 > div > div:first-child {
+    border-radius: 8px;
+    cursor: pointer;
+    transition:
+        color 0.25s ease,
+        background-color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.shopping_card_btn .max-h-70 > div > div:first-child svg {
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.shopping_card_btn .max-h-70 > div > div:first-child:hover {
+    color: #f97316;
+    background-color: rgb(249 115 22 / 10%);
+    transform: scale(1.08);
+    box-shadow: 0 0 12px rgb(249 115 22 / 10%);
+}
+
+.shopping_card_btn .max-h-70 > div > div:first-child:hover svg {
+    color: #f97316;
+    transform: rotate(90deg);
+}
+
+/* در حالت فوکوس کیبورد */
+.shopping_card_btn .max-h-70 > div > div:first-child:focus-within {
+    outline: 2px solid #f97316;
+    outline-offset: 2px;
+}
+
+
+    .shopping_card_btn > div > div img:hover {
+        transform: scale(1.06) rotate(-2deg);
+        filter: drop-shadow(0 5px 8px rgb(0 0 0 / 12%));
+    }
+
+    /* دکمه‌های اقدام */
+    .shopping_card_btn > div > div a,
+    button.border-orange-500 {
+        transition:
+            transform 0.25s ease,
+            box-shadow 0.3s ease,
+            filter 0.3s ease;
+    }
+
+    .shopping_card_btn > div > div a:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 14px rgb(249 115 22 / 18%);
+        filter: brightness(1.04);
+    }
+
+    /* نشان تعداد محصولات */
+    .shopping_card_btn > span {
+        transition: transform 0.3s ease;
+        box-shadow: 0 2px 8px rgb(249 115 22 / 30%);
+    }
+
+    .shopping_card_btn:hover > span {
+        transform: translate(50%, -50%) scale(1.12);
+    }
+
+    
+/* ========================================
+   GLOSSY SHINE EFFECT
+======================================== */
+
+.shopping_card_btn > div > div a,
+button.border-orange-500,
+.shopping_card_btn > div > div a:hover,
+#toggle-theme-btn,
+.swiper-button-next-custom,
+.swiper-button-prev-custom,
+.swiper-button-next-custom-readings,
+.swiper-button-prev-custom-readings {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* نوار نور */
+.shopping_card_btn > div > div a::before,
+button.border-orange-500::before,
+#toggle-theme-btn::before,
+.swiper-button-next-custom::before,
+.swiper-button-prev-custom::before,
+.swiper-button-next-custom-readings::before,
+.swiper-button-prev-custom-readings::before {
+    content: "";
+    position: absolute;
+    top: -60%;
+    left: -80%;
+    width: 45%;
+    height: 220%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgb(255 255 255 / 12%),
+        rgb(255 255 255 / 75%),
+        rgb(255 255 255 / 12%),
+        transparent
+    );
+    transform: skewX(-22deg);
+    transition: left 0.65s cubic-bezier(.2, .8, .2, 1);
+    pointer-events: none;
+    z-index: 2;
+}
+
+button.border-orange-500:hover::before,
+#toggle-theme-btn:hover::before,
+.swiper-button-next-custom:hover::before,
+.swiper-button-prev-custom:hover::before,
+.swiper-button-next-custom-readings:hover::before,
+.swiper-button-prev-custom-readings:hover::before {
+    left: 140%;
+}
+
+/* درخشش سطح دکمه نارنجی */
+.shopping_card_btn > div > div a:hover
+button.border-orange-500:hover {
+    box-shadow:
+        0 5px 18px rgb(249 115 22 / 25%),
+        inset 0 0 12px rgb(255 255 255 / 10%);
+}
+
+
+    /* ========================================
+       MOBILE SIDE PANELS — 3D
+    ======================================== */
+
+    .mobile_nav {
+        transform-origin: right center;
+        transform: perspective(1400px) rotateY(-9deg);
+        transition:
+            right 0.55s cubic-bezier(.22, 1, .36, 1),
+            transform 0.55s cubic-bezier(.22, 1, .36, 1),
+            box-shadow 0.4s ease;
+        box-shadow: 18px 0 45px rgb(0 0 0 / 0%);
+        will-change: right, transform;
+        backface-visibility: hidden;
+    }
+
+    .mobile_nav.right-0 {
+        transform: perspective(1400px) rotateY(0deg);
+        box-shadow:
+            -18px 0 45px rgb(0 0 0 / 18%),
+            -4px 0 18px rgb(249 115 22 / 7%);
+    }
+
+    .mobile_shoping_card {
+        transform-origin: center bottom;
+        transform: perspective(1400px) rotateX(10deg) scale(.97);
+        transition:
+            bottom 0.5s cubic-bezier(.22, 1, .36, 1),
+            transform 0.5s cubic-bezier(.22, 1, .36, 1),
+            box-shadow 0.4s ease;
+        box-shadow: 0 -15px 45px rgb(0 0 0 / 0%);
+        will-change: bottom, transform;
+        backface-visibility: hidden;
+    }
+
+
+    /* لایه تیره پشت پنل‌ها */
+    .black_layer {
+        background: rgb(0 0 0 / 45%);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        transition:
+            opacity 0.35s ease,
+            backdrop-filter 0.35s ease;
+    }
+
+    /* دسترسی‌پذیری: احترام به کاهش حرکت */
+    @media (prefers-reduced-motion: reduce) {
+        #toggle-theme-btn,
+        .mobile_nav,
+        .mobile_shoping_card,
+        .black_layer,
+        nav li.group > div,
+        nav li.group > div > ul {
+            transition-duration: 0.01ms !important;
+            animation-duration: 0.01ms !important;
+        }
+    }
+}
+
+/* Swiper cards */
+.mySwiper .swiper-slide,
+.mySwiper2 .swiper-slide {
+    transition:
+        transform 0.4s cubic-bezier(.2, .8, .2, 1),
+        filter 0.4s ease;
+}
+
+.mySwiper .swiper-slide:hover,
+.mySwiper2 .swiper-slide:hover {
+    transform: translateY(-5px);
+}
+
+/* تصاویر داخل کارت‌های اسلایدر */
+.mySwiper .swiper-slide img,
+.mySwiper2 .swiper-slide img {
+    transition:
+        transform 0.5s cubic-bezier(.2, .8, .2, 1),
+        filter 0.4s ease;
+}
+
+.mySwiper .swiper-slide img:hover,
+.mySwiper2 .swiper-slide img:hover {
+    transform: scale(1.035);
+}
+
+/* دکمه‌های اختصاصی اسلایدر */
+.swiper-button-next-custom,
+.swiper-button-prev-custom,
+.swiper-button-next-custom-readings,
+.swiper-button-prev-custom-readings {
+    transition:
+        transform 0.3s ease,
+        color 0.3s ease,
+        background-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.swiper-button-next-custom:hover,
+.swiper-button-prev-custom:hover,
+.swiper-button-next-custom-readings:hover,
+.swiper-button-prev-custom-readings:hover {
+    transform: scale(1.08);
+    box-shadow: 0 5px 15px rgb(249 115 22 / 15%);
+}
+
+.swiper-button-next-custom:active,
+.swiper-button-prev-custom:active,
+.swiper-button-next-custom-readings:active,
+.swiper-button-prev-custom-readings:active {
+    transform: scale(.94);
+}
+
+/* =========================================
+   SERVICES SECTION — PREMIUM MICRO-INTERACTIONS
+   بدون تغییر HTML و کلاس‌های Tailwind
+========================================= */
+
+/* هر آیتم خدمات */
+section.py-13\.5 .my_container > div.overflow-x-auto
+> div.flex.justify-between > div {
+    position: relative;
+    isolation: isolate;
+    border-radius: 16px;
+    transition:
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        background-color 0.35s ease;
+}
+
+/* نور ملایم پس‌زمینه هنگام Hover */
+section.py-13\.5 .my_container > div.overflow-x-auto
+> div.flex.justify-between > div::before {
+    content: "";
+    position: absolute;
+    inset: 8px 4px;
+    border-radius: inherit;
+    background: linear-gradient(
+        145deg,
+        rgb(249 115 22 / 0.07),
+        transparent 65%
+    );
+    opacity: 0;
+    z-index: -1;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+
+/* آیکون خدمات */
+section.py-13\.5 .my_container > div.overflow-x-auto
+> div.flex.justify-between > div > img {
+    object-fit: contain;
+    transform-origin: center;
+    transition:
+        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.35s ease;
+    will-change: transform;
+}
+
+/* عنوان خدمات */
+section.py-13\.5 .my_container > div.overflow-x-auto
+> div.flex.justify-between > div > span {
+    position: relative;
+    display: inline-block;
+    transition: color 0.3s ease;
+}
+
+/* خط نارنجی متحرک زیر عنوان */
+section.py-13\.5 .my_container > div.overflow-x-auto
+> div.flex.justify-between > div > span::after {
+    content: "";
+    position: absolute;
+    right: 50%;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    border-radius: 10px;
+    background: #f97316;
+    transform: translateX(50%);
+    transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* توضیحات خدمات */
+section.py-13\.5 .my_container > div.overflow-x-auto
+> div.flex.justify-between > div > p {
+    transition:
+        color 0.3s ease,
+        transform 0.35s ease;
+}
+
+/* افکت‌ها فقط در دستگاه‌های دارای Hover دقیق */
+@media (hover: hover) and (pointer: fine) {
+
+    /* حرکت ظریف آیتم */
+    section.py-13\.5 .my_container > div.overflow-x-auto
+    > div.flex.justify-between > div:hover {
+        transform: translateY(-5px);
+    }
+
+    /* نمایش نور پس‌زمینه */
+    section.py-13\.5 .my_container > div.overflow-x-auto
+    > div.flex.justify-between > div:hover::before {
+        opacity: 1;
+    }
+
+    /* بزرگ‌نمایی ملایم آیکون */
+    section.py-13\.5 .my_container > div.overflow-x-auto
+    > div.flex.justify-between > div:hover > img {
+        transform: scale(1.09) translateY(-2px);
+        filter: drop-shadow(0 5px 8px rgb(249 115 22 / 0.16));
+    }
+
+    /* رنگ عنوان در حالت Hover */
+    section.py-13\.5 .my_container > div.overflow-x-auto
+    > div.flex.justify-between > div:hover > span {
+        color: #f97316;
+    }
+
+    /* باز شدن خط زیر عنوان */
+    section.py-13\.5 .my_container > div.overflow-x-auto
+    > div.flex.justify-between > div:hover > span::after {
+        width: 85%;
+    }
+
+    /* حرکت بسیار جزئی توضیحات */
+    section.py-13\.5 .my_container > div.overflow-x-auto
+    > div.flex.justify-between > div:hover > p {
+        transform: translateY(-1px);
+    }
+
+    /* پشتیبانی از Dark Mode */
+    .dark section.py-13\.5 .my_container > div.overflow-x-auto
+    > div.flex.justify-between > div:hover > span {
+        color: #fb923c;
+    }
+}
+
+/* جلوگیری از باقی ماندن افکت‌های غیرضروری روی صفحات لمسی */
+@media (hover: none) {
+    section.py-13\.5 .my_container > div.overflow-x-auto
+    > div.flex.justify-between > div::before {
+        display: none;
+    }
+}
+
+/* احترام به تنظیمات کاهش حرکت سیستم‌عامل */
+@media (prefers-reduced-motion: reduce) {
+    section.py-13\.5 .my_container > div.overflow-x-auto
+    > div.flex.justify-between > div,
+    section.py-13\.5 .my_container > div.overflow-x-auto
+    > div.flex.justify-between > div::before,
+    section.py-13\.5 .my_container > div.overflow-x-auto
+    > div.flex.justify-between > div > img,
+    section.py-13\.5 .my_container > div.overflow-x-auto
+    > div.flex.justify-between > div > span,
+    section.py-13\.5 .my_container > div.overflow-x-auto
+    > div.flex.justify-between > div > span::after,
+    section.py-13\.5 .my_container > div.overflow-x-auto
+    > div.flex.justify-between > div > p {
+        transition: none !important;
+        animation: none !important;
+        transform: none !important;
+    }
+}
+
+
+/* ========================================
+   3D DOOR OPENING — MOBILE NAV
+======================================== */
+
+.mobile_nav {
+    transform-origin: top right;
+    transform: perspective(1400px) rotateX(-13deg) rotateY(-9deg);
+    opacity: 0.88;
+
+    transition:
+        right 0.58s cubic-bezier(.22, 1, .36, 1),
+        transform 0.58s cubic-bezier(.22, 1, .36, 1),
+        opacity 0.35s ease,
+        box-shadow 0.45s ease;
+
+    backface-visibility: hidden;
+    will-change: right, transform;
+    box-shadow: 12px 12px 35px rgb(0 0 0 / 0%);
+}
+
+.mobile_nav.right-0 {
+    transform: perspective(1400px) rotateX(0deg) rotateY(0deg);
+    opacity: 1;
+
+    box-shadow:
+        -16px 12px 45px rgb(0 0 0 / 22%),
+        -3px 0 20px rgb(249 115 22 / 8%);
+}
+
+```css
+/* ========================================
+   QUICK SHOP — MOBILE NAV ENHANCEMENTS
+======================================== */
+
+/* منوی اصلی */
+.mobile_nav {
+    right: -100%;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(-12px);
+    transition:
+        right 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.3s ease,
+        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        visibility 0.4s;
+    overscroll-behavior: contain;
+    box-shadow: -15px 0 45px rgba(0, 0, 0, 0.08);
+    border-left: 1px solid rgba(128, 128, 128, 0.08);
+    will-change: right, transform;
+}
+
+/* وضعیت باز منو */
+.mobile_nav.active {
+    right: 0;
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* لوگو */
+.mobile_nav > div:first-child img {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.mobile_nav > div:first-child img:hover {
+    transform: scale(1.025);
+}
+
+/* دکمه بستن */
+.close_mobile_nav {
+    cursor: pointer;
+    transition:
+        color 0.25s ease,
+        transform 0.3s ease;
+}
+
+.close_mobile_nav:hover {
+    color: #f97316;
+    transform: rotate(90deg) scale(1.08);
+}
+
+.close_mobile_nav:active {
+    transform: rotate(90deg) scale(0.92);
+}
+
+/* لینک‌های سطح اصلی */
+.mobile_nav > ul > li > a,
+.mobile_nav > ul > li > div:first-child > a {
+    position: relative;
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+/* آیکون لینک‌ها */
+.mobile_nav > ul > li > a svg,
+.mobile_nav > ul > li > div:first-child > a svg {
+    flex-shrink: 0;
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+/* افکت Hover برای لینک‌ها */
+@media (hover: hover) {
+    .mobile_nav > ul > li > a:hover,
+    .mobile_nav > ul > li > div:first-child > a:hover {
+        color: #f97316;
+        transform: translateX(-3px);
+    }
+
+    .mobile_nav > ul > li > a:hover svg,
+    .mobile_nav > ul > li > div:first-child > a:hover svg {
+        color: #f97316;
+        transform: scale(1.1);
+    }
+}
+
+/* افکت لمس موبایل */
+.mobile_nav > ul > li > a:active,
+.mobile_nav > ul > li > div:first-child > a:active {
+    color: #f97316;
+}
+
+/* جداکننده آیتم‌ها */
+.mobile_nav > ul > li {
+    border-color: rgba(163, 163, 163, 0.16);
+    transition: border-color 0.25s ease;
+}
+
+/* دکمه باز کردن زیرمنو */
+.open_mobile_sub_menu_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    cursor: pointer;
+    border-radius: 10px;
+    color: #737373;
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.3s ease;
+}
+
+.open_mobile_sub_menu_btn:hover {
+    background: rgba(249, 115, 22, 0.1);
+    color: #f97316;
+}
+
+.open_mobile_sub_menu_btn:active {
+    transform: scale(0.92);
+}
+
+.open_mobile_sub_menu_btn svg {
+    transition: transform 0.3s ease;
+}
+
+/* وقتی زیرمنو باز است */
+.open_mobile_sub_menu_btn.is-open {
+    color: #f97316;
+    background: rgba(249, 115, 22, 0.1);
+}
+
+.open_mobile_sub_menu_btn.is-open svg {
+    transform: rotate(180deg);
+}
+
+/* زیرمنوی فروشگاه */
+.mobile_sub_menu {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    padding-right: 8px;
+    margin-top: 0;
+    transition:
+        max-height 0.4s ease,
+        opacity 0.3s ease,
+        margin-top 0.3s ease,
+        visibility 0.3s ease;
+}
+
+.mobile_sub_menu.is-open {
+    max-height: 260px;
+    opacity: 1;
+    visibility: visible;
+    margin-top: 10px;
+}
+
+/* لینک‌های زیرمنو */
+.mobile_sub_menu li a {
+    position: relative;
+    transition:
+        color 0.25s ease,
+        background-color 0.25s ease,
+        padding-right 0.25s ease;
+}
+
+.mobile_sub_menu li a svg {
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+}
+
+.mobile_sub_menu li a:hover {
+    padding-right: 12px;
+}
+
+.mobile_sub_menu li a:hover svg {
+    transform: scale(1.12);
+    color: #f97316;
+}
+
+/* ورود نرم آیتم‌ها پس از باز شدن منو */
+@keyframes mobileNavItemEnter {
+    from {
+        opacity: 0;
+        transform: translateX(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.mobile_nav.active > ul > li {
+    animation: mobileNavItemEnter 0.35s ease both;
+}
+
+.mobile_nav.active > ul > li:nth-child(1) {
+    animation-delay: 0.04s;
+}
+
+.mobile_nav.active > ul > li:nth-child(2) {
+    animation-delay: 0.08s;
+}
+
+.mobile_nav.active > ul > li:nth-child(3) {
+    animation-delay: 0.12s;
+}
+
+.mobile_nav.active > ul > li:nth-child(4) {
+    animation-delay: 0.16s;
+}
+
+/* دسترس‌پذیری */
+.mobile_nav a:focus-visible,
+.close_mobile_nav:focus-visible,
+.open_mobile_sub_menu_btn:focus-visible {
+    outline: 2px solid #f97316;
+    outline-offset: 4px;
+}
+
+/* کاهش انیمیشن برای کاربران حساس به حرکت */
+@media (prefers-reduced-motion: reduce) {
+    .mobile_nav,
+    .mobile_nav *,
+    .mobile_nav *::before,
+    .mobile_nav *::after {
+        animation: none !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+```
+/* ========================================
+   3D DOOR OPENING — MOBILE CART
+======================================== */
+
+.mobile_shoping_card {
+    transform-origin: center top;
+    transform: perspective(1400px) rotateX(-18deg) scaleY(.92);
+    opacity: 0;
+
+    transition:
+        bottom 0.55s cubic-bezier(.22, 1, .36, 1),
+        transform 0.55s cubic-bezier(.22, 1, .36, 1),
+        opacity 0.35s ease,
+        box-shadow 0.4s ease;
+
+    backface-visibility: hidden;
+    will-change: bottom, transform;
+    box-shadow: 0 -10px 35px rgb(0 0 0 / 0%);
+}
+
+.mobile_shoping_card.bottom-0 {
+    transform: perspective(1400px) rotateX(0deg) scaleY(1);
+    opacity: 1;
+
+    box-shadow:
+        0 -18px 50px rgb(0 0 0 / 22%),
+        0 -4px 20px rgb(249 115 22 / 8%);
+}
+
+/* ========================================
+   SHOPPING CART ACTION BUTTONS — SHINE
+======================================== */
+
+/* آماده‌سازی دکمه‌ها */
+.shopping_card_btn:hover > div > div a,
+.shopping_card_btn:focus-within > div > div a {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* نوار براق */
+.shopping_card_btn:hover > div > div a::before,
+.shopping_card_btn:focus-within > div > div a::before {
+    content: "";
+    position: absolute;
+    top: -60%;
+    left: -120%;
+    width: 50%;
+    height: 220%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgb(255 255 255 / 20%),
+        rgb(255 255 255 / 85%),
+        rgb(255 255 255 / 20%),
+        transparent
+    );
+
+    transform: skewX(-22deg);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* عبور نور فقط هنگام هاور روی خود دکمه */
+.shopping_card_btn:hover > div > div a:hover::before,
+.shopping_card_btn:focus-within > div > div a:hover::before {
+    left: 160%;
+    transition: left 0.65s cubic-bezier(.2, .8, .2, 1);
+}
+
+/* درخشش دکمه هنگام هاور */
+.shopping_card_btn:hover > div > div a:hover,
+.shopping_card_btn:focus-within > div > div a:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 6px 16px rgb(249 115 22 / 25%),
+        0 0 12px rgb(249 115 22 / 12%);
+    filter: brightness(1.07);
+}
+
+/* حس فشرده‌شدن هنگام کلیک */
+.shopping_card_btn:hover > div > div a:active,
+.shopping_card_btn:focus-within > div > div a:active {
+    transform: scale(.96);
+    filter: brightness(1.12);
+    box-shadow:
+        0 2px 8px rgb(249 115 22 / 30%),
+        inset 0 0 10px rgb(255 255 255 / 15%);
+}
+
+/* ========================================
+   MOBILE SHOPPING CART — PREMIUM UI
+======================================== */
+
+/* پنل اصلی سبد خرید موبایل */
+.mobile_shoping_card {
+    border: 1px solid rgb(249 115 22 / 12%);
+    border-bottom: 0;
+
+    background-image:
+        linear-gradient(
+            145deg,
+            rgb(249 115 22 / 5%),
+            transparent 38%
+        );
+
+    box-shadow:
+        0 -18px 55px rgb(0 0 0 / 14%),
+        0 -3px 15px rgb(249 115 22 / 6%);
+
+    backface-visibility: hidden;
+}
+
+/* حالت تاریک */
+.dark .mobile_shoping_card {
+    background-image:
+        linear-gradient(
+            145deg,
+            rgb(249 115 22 / 9%),
+            transparent 45%
+        );
+
+    border-color: rgb(249 115 22 / 18%);
+}
+
+/* دکمه بستن سبد خرید */
+.mobile_shoping_card .close_shopping_card_btn {
+    cursor: pointer;
+    border: 1px solid rgb(249 115 22 / 15%);
+
+    box-shadow:
+        0 -3px 12px rgb(0 0 0 / 5%),
+        0 5px 15px rgb(0 0 0 / 8%);
+
+    transition:
+        color 0.3s ease,
+        background-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.mobile_shoping_card .close_shopping_card_btn svg {
+    transition: transform 0.35s ease;
+}
+
+.mobile_shoping_card .close_shopping_card_btn:hover {
+    color: #f97316;
+
+    box-shadow:
+        0 5px 18px rgb(249 115 22 / 16%),
+        0 0 12px rgb(249 115 22 / 8%);
+}
+
+
+/* ========================================
+   PRODUCT ROWS
+======================================== */
+
+/* هر ردیف محصول */
+.mobile_shoping_card .max-h-70 > div {
+    border-radius: 12px;
+
+}
+
+.mobile_shoping_card .max-h-70 > div:hover {
+    background-color: rgb(249 115 22 / 5%);
+
+    box-shadow:
+        0 4px 12px rgb(0 0 0 / 3%);
+}
+
+/* تصاویر محصولات */
+.mobile_shoping_card .max-h-70 > div img {
+    transition:
+        transform 0.35s ease,
+        filter 0.35s ease;
+}
+
+.mobile_shoping_card .max-h-70 > div:hover img {
+    transform: scale(1.045);
+    filter: drop-shadow(0 4px 7px rgb(0 0 0 / 10%));
+}
+
+/* ========================================
+   REMOVE PRODUCT — ORANGE HOVER
+======================================== */
+
+.mobile_shoping_card .max-h-70 > div > div:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+    border-radius: 8px;
+    cursor: pointer;
+
+    transition:
+        color 0.25s ease,
+        background-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.mobile_shoping_card .max-h-70 > div > div:first-child svg {
+    transition:
+        color 0.25s ease,
+        transform 0.3s ease;
+}
+
+.mobile_shoping_card .max-h-70 > div > div:first-child:hover {
+    color: #f97316;
+    background-color: rgb(249 115 22 / 12%);
+    transform: scale(1.08);
+}
+
+.mobile_shoping_card .max-h-70 > div > div:first-child:hover svg {
+    color: #f97316;
+    transform: rotate(90deg);
+}
+
+/* ========================================
+   MOBILE CART ACTION BUTTONS
+======================================== */
+
+.mobile_shoping_card .flex.justify-between.mt-4 a {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+
+    border-radius: 12px;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.3s ease,
+        filter 0.3s ease,
+        background-color 0.3s ease;
+}
+
+/* نوار برق متحرک */
+.mobile_shoping_card .flex.justify-between.mt-4 a::before {
+    content: "";
+    position: absolute;
+
+    top: -60%;
+    left: -120%;
+    width: 48%;
+    height: 220%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgb(255 255 255 / 18%),
+        rgb(255 255 255 / 85%),
+        rgb(255 255 255 / 20%),
+        transparent
+    );
+
+    transform: skewX(-22deg);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* برق هنگام هاور */
+.mobile_shoping_card .flex.justify-between.mt-4 a:hover::before {
+    left: 160%;
+    transition: left 0.65s cubic-bezier(.2, .8, .36, 1);
+}
+
+/* دکمه پرداخت */
+.mobile_shoping_card .flex.justify-between.mt-4 a:first-child:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 20px rgb(249 115 22 / 30%),
+        0 0 14px rgb(249 115 22 / 12%);
+
+    filter: brightness(1.07);
+}
+
+/* دکمه سبد خرید */
+.mobile_shoping_card .flex.justify-between.mt-4 a:last-child:hover {
+    color: #ea580c;
+    background-color: rgb(249 115 22 / 7%);
+    border-color: #f97316;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 7px 18px rgb(249 115 22 / 15%),
+        inset 0 0 10px rgb(249 115 22 / 5%);
+}
+
+/* حس کلیک */
+.mobile_shoping_card .flex.justify-between.mt-4 a:active {
+    transform: translateY(1px) scale(.97);
+
+    box-shadow:
+        0 2px 7px rgb(249 115 22 / 20%),
+        inset 0 0 12px rgb(255 255 255 / 12%);
+}
+
+/* کاهش انیمیشن برای تنظیمات دسترسی‌پذیری */
+@media (prefers-reduced-motion: reduce) {
+    .mobile_shoping_card,
+    .mobile_shoping_card * {
+        scroll-behavior: auto;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ========================================
+   SMOOTH MOBILE CART OPEN & CLOSE
+======================================== */
+
+.mobile_shoping_card {
+    transform-origin: center top;
+
+    transition:
+        bottom 0.55s cubic-bezier(.22, 1, .36, 1),
+        transform 0.55s cubic-bezier(.22, 1, .36, 1),
+        opacity 0.4s ease,
+        box-shadow 0.4s ease;
+
+    will-change: bottom, transform, opacity;
+}
+
+/* حالت بسته: پنل به‌آرامی جمع می‌شود */
+.mobile_shoping_card.-bottom-full {
+    transform: perspective(1400px) rotateX(-12deg) scale(.96);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* حالت باز: پنل صاف و نرم ظاهر می‌شود */
+.mobile_shoping_card.bottom-0 {
+    transform: perspective(1400px) rotateX(0deg) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* دکمه بستن */
+.mobile_shoping_card .close_shopping_card_btn {
+    transition:
+        color 0.3s ease,
+        box-shadow 0.3s ease,
+        background-color 0.3s ease;
+}
+
+.mobile_shoping_card .close_shopping_card_btn:active {
+    color: #f97316;
+    box-shadow: 0 0 18px rgb(249 115 22 / 25%);
+}
+
+/* ============================================
+   HEADER HERO — Professional Enhancement
+   ============================================ */
+
+/* --- افکت Ken Burns ظریف روی پس‌زمینه --- */
+/* چون bg-image روی خود header است، از ::before برای لایه زوم استفاده می‌کنیم
+   تا تصویر اصلی دست‌نخورده بماند */
+.header-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: inherit;
+    background-size: cover;
+    background-position: inherit;
+    background-repeat: no-repeat;
+    z-index: 0;
+    pointer-events: none;
+    transform: scale(1.06);
+    animation: heroKenBurns 22s ease-in-out infinite alternate;
+    will-change: transform;
+}
+
+/* اطمینان از اینکه محتوا بالای لایه زوم قرار می‌گیرد */
+.header-hero > .my_container,
+.header-hero > .header-wave {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes heroKenBurns {
+    0%   { transform: scale(1.06) translate3d(0, 0, 0); }
+    100% { transform: scale(1.12) translate3d(-1.2%, -0.8%, 0); }
+}
+
+/* --- گرادیان ملایم برای خوانایی بهتر متن (بسیار ظریف) --- */
+.header-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.18) 0%,
+        rgba(0, 0, 0, 0.05) 45%,
+        rgba(0, 0, 0, 0) 100%
+    );
+}
+
+/* --- انیمیشن ورود متن‌ها --- */
+.reveal-item {
+    opacity: 0;
+    transform: translateY(22px);
+    animation: heroReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    will-change: opacity, transform;
+}
+
+.reveal-delay-1 {
+    animation-delay: 0.18s;
+}
+
+@keyframes heroReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- شناوری آرام موج SVG --- */
+.header-wave {
+    animation: waveFloat 6s ease-in-out infinite;
+    will-change: transform;
+}
+
+@keyframes waveFloat {
+    0%, 100% { transform: translateY(0.75rem); }
+    50%      { transform: translateY(0.35rem); }
+}
+
+/* در دسکتاپ مقدار پایه translate-y بیشتر است */
+@media (min-width: 1024px) {
+    @keyframes waveFloat {
+        0%, 100% { transform: translateY(1.25rem); }
+        50%      { transform: translateY(0.85rem); }
+    }
+}
+
+/* --- احترام به prefers-reduced-motion --- */
+@media (prefers-reduced-motion: reduce) {
+    .header-hero::before {
+        animation: none;
+        transform: scale(1.06);
+    }
+    .reveal-item {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+    .header-wave {
+        animation: none;
+        transform: translateY(0.75rem);
+    }
+    @media (min-width: 1024px) {
+        .header-wave { transform: translateY(1.25rem); }
+    }
+}
+
+
+```css
+/* ========================================
+   SPECIAL OFFERS — FLOATING HEADER
+======================================== */
+
+.offer-section-head {
+    position: relative !important;
+    z-index: 9999 !important;
+    margin-bottom: -25px;
+    isolation: isolate;
+    border: 1px solid rgba(249, 115, 22, 0.08);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.35s ease, transform 0.35s ease;
+}
+
+.offer-section-body {
+    position: relative !important;
+    z-index: 1 !important;
+    padding-top: 45px;
+    border: 1px solid rgba(163, 163, 163, 0.08);
+}
+
+/* هدر تخفیف همیشه بالاتر از بدنه قرار بگیرد */
+.offer-section-head {
+    position: relative !important;
+    z-index: 20 !important;
+
+    margin-bottom: 0 !important;
+
+    border: 1px solid rgba(249, 115, 22, 0.08);
+    border-radius: 24px;
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+
+    transition: box-shadow 0.35s ease;
+}
+
+/* بدنه به سمت هدر بالا بیاید */
+.offer-section-body {
+    position: relative !important;
+    z-index: 1 !important;
+
+    margin-top: -20px !important;
+    padding-top: 42px !important;
+
+    border: 1px solid rgba(163, 163, 163, 0.08);
+    border-radius: 24px;
+
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* هم‌پوشانی بیشتر در موبایل */
+@media (max-width: 767px) {
+    .offer-section-head {
+        z-index: 20 !important;
+        border-radius: 20px;
+    }
+
+    .offer-section-body {
+        z-index: 1 !important;
+        margin-top: -22px !important;
+        padding-top: 42px !important;
+    }
+}
+
+/* Product cards */
+.offerSwiper .swiper-slide > .group {
+    height: 100%;
+    transform: translateY(0);
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+@media (hover: hover) and (min-width: 1024px) {
+    .offerSwiper .swiper-slide > .group:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 28px rgba(249, 115, 22, 0.09);
+    }
+}
+
+/* Slider navigation */
+.swiper-button-prev-custom,
+.swiper-button-next-custom {
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.swiper-button-prev-custom:hover,
+.swiper-button-next-custom:hover {
+    filter: brightness(1.08);
+}
+
+.swiper-button-prev-custom:active,
+.swiper-button-next-custom:active {
+    transform: scale(0.9);
+}
+
+/* Mobile layout */
+@media (max-width: 767px) {
+    .offer-section-head {
+        margin-bottom: -22px;
+        padding-top: 17px;
+        padding-bottom: 17px;
+        background: linear-gradient(125deg, #f97316, #fb923c) !important;
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        box-shadow: 0 10px 24px rgba(249, 115, 22, 0.2);
+    }
+
+    .offer-section-head > div:first-child > span:first-child {
+        background: white !important;
+        opacity: 0.95;
+    }
+
+    .offer-section-head > div:first-child > span:last-child {
+        color: white !important;
+    }
+
+    .offer-section-head a,
+    .offer-section-head a span {
+        color: white !important;
+    }
+
+    .offer-section-head .swiper-button-prev-custom svg,
+    .offer-section-head .swiper-button-next-custom svg,
+    .offer-section-head a svg {
+        background: rgba(255, 255, 255, 0.2) !important;
+        color: white !important;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(8px);
+    }
+
+    .offer-section-body {
+        padding-top: 38px;
+        margin-top: 0;
+        border-radius: 22px;
+        border-color: rgba(249, 115, 22, 0.14);
+    }
+
+    .offerSwiper .swiper-slide > .group {
+        border-color: rgba(249, 115, 22, 0.08);
+    }
+
+    .offerSwiper .swiper-slide > .group:active {
+        transform: scale(0.985);
+        border-color: #f97316;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .offer-section-head,
+    .offer-section-body,
+    .offerSwiper .swiper-slide > .group,
+    .swiper-button-prev-custom,
+    .swiper-button-next-custom {
+        transition: none !important;
+    }
+}
+```
+
+
+/* ========================================
+   OFFERS SECTION — MOBILE ONLY
+======================================== */
+
+@media (max-width: 1023px) {
+
+    /* کارت اصلی */
+    .offer_body {
+        display: flex;
+        padding: 14px;
+        gap: 14px;
+        overflow: hidden;
+        border-radius: 18px;
+        justify-content: space-between;
+    }
+
+    /* عنوان تخفیفات داخل کارت اصلی */
+    .section_head {
+        margin-bottom: 0;
+    }
+
+    /* بنر تخفیف بالای محصولات */
+    .offer_body > div:first-child {
+        order: 1;
+        width: 100%;
+        margin-top: 0;
+        padding: 0;
+    }
+
+    /* اسلایدر محصولات */
+    .offer_body > .mySwiper {
+        order: 2;
+        width: 100%;
+        min-width: 0;
+        margin: 0;
+    }
+
+    .offer_body .swiper-slide {
+        height: auto;
+    }
+}
+```css
+/* ========================================
+   QUICK SHOP — MODERN FOOTER
+======================================== */
+
+.modern-footer {
+    isolation: isolate;
+}
+
+.footer-card {
+    isolation: isolate;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 18px 55px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.footer-card:hover {
+    border-color: rgba(251, 146, 60, 0.22);
+    box-shadow: 0 24px 65px rgba(0, 0, 0, 0.13);
+}
+
+/* Background glow */
+.footer-glow {
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(65px);
+    opacity: 0.12;
+    z-index: -1;
+    transition: opacity 0.4s ease, transform 0.6s ease;
+}
+
+.footer-glow-one {
+    width: 220px;
+    height: 220px;
+    top: -100px;
+    right: 12%;
+    background: #fb923c;
+}
+
+.footer-glow-two {
+    width: 180px;
+    height: 180px;
+    bottom: -100px;
+    left: 25%;
+    background: #f97316;
+}
+
+.footer-card:hover .footer-glow {
+    opacity: 0.2;
+}
+
+.footer-card:hover .footer-glow-one {
+    transform: translate(-12px, 10px);
+}
+
+.footer-card:hover .footer-glow-two {
+    transform: translate(12px, -8px);
+}
+
+/* Brand logo */
+.footer-logo-link {
+    transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.footer-logo-link:hover {
+    transform: translateY(-4px) scale(1.025);
+    filter: drop-shadow(0 8px 18px rgba(251, 146, 60, 0.18));
+}
+
+/* Brand badge */
+.footer-badge {
+    transition: background-color 0.3s ease,
+                border-color 0.3s ease,
+                transform 0.3s ease;
+}
+
+.footer-badge:hover {
+    background: rgba(251, 146, 60, 0.1);
+    border-color: rgba(251, 146, 60, 0.35);
+    transform: translateY(-2px);
+}
+
+/* Section heading */
+.footer-heading-line {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 27px;
+    height: 4px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #fdba74, #f97316);
+    transition: width 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (min-width: 641px) {
+    .footer-column:hover .footer-heading-line,
+    .footer-map-wrap:hover .footer-heading-line {
+        width: 27px;
+        box-shadow: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .footer-column:hover .footer-heading-line,
+    .footer-column:active .footer-heading-line,
+    .footer-map-wrap:hover .footer-heading-line,
+    .footer-map-wrap:active .footer-heading-line {
+        width: 42px;
+        box-shadow: 0 0 12px rgba(249, 115, 22, 0.3);
+    }
+}
+
+/* Footer navigation links */
+.footer-links a {
+    position: relative;
+    display: inline-block;
+    color: #d4d4d4;
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.footer-links a::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    border-radius: 99px;
+    background: linear-gradient(90deg, #fdba74, #f97316);
+    transition: width 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #fdba74;
+    transform: translateX(-4px);
+}
+
+.footer-links a:hover::after {
+    width: 100%;
+}
+
+/* Contact icons */
+.footer-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    color: #fdba74;
+    background: rgba(255, 255, 255, 0.055);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 13px;
+    transition: transform 0.3s ease,
+                background-color 0.3s ease,
+                border-color 0.3s ease;
+}
+
+.footer-contact-item {
+    transition: transform 0.3s ease;
+}
+
+.footer-contact-item:hover {
+    transform: translateX(-3px);
+}
+
+.footer-contact-item:hover .footer-icon {
+    transform: translateY(-2px) rotate(-4deg);
+    background: rgba(249, 115, 22, 0.13);
+    border-color: rgba(251, 146, 60, 0.25);
+}
+
+.footer-contact-item a {
+    transition: color 0.25s ease;
+}
+
+.footer-contact-item a:hover {
+    color: #fdba74;
+}
+
+/* Map card */
+.footer-map {
+    position: relative;
+    height: 245px;
+    background: #262626;
+    transform: translateZ(0);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    transition: transform 0.4s ease,
+                border-color 0.4s ease,
+                box-shadow 0.4s ease;
+}
+
+.footer-map iframe {
+    display: block;
+    transition: filter 0.4s ease;
+}
+
+.footer-map:hover {
+    transform: translateY(-4px);
+    border-color: rgba(251, 146, 60, 0.4);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.2);
+}
+
+.footer-map:hover iframe {
+    filter: saturate(1.12) contrast(1.02);
+}
+
+.footer-map-link {
+    transition: color 0.25s ease, gap 0.25s ease;
+}
+
+.footer-map-link:hover {
+    color: #fed7aa;
+    gap: 12px;
+}
+
+/* Social buttons */
+.footer-social {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    color: #a3a3a3;
+    border: 1px solid rgba(115, 115, 115, 0.22);
+    border-radius: 14px;
+    background: rgba(115, 115, 115, 0.05);
+    transition: color 0.3s ease,
+                background-color 0.3s ease,
+                transform 0.3s ease,
+                border-color 0.3s ease;
+}
+
+.footer-social:hover {
+    color: #fff;
+    background: #f97316;
+    border-color: #fb923c;
+    transform: translateY(-4px) rotate(-3deg);
+}
+
+/* Bottom divider */
+.footer-bottom {
+    border-bottom: 1px solid transparent;
+    border-image: linear-gradient(
+        90deg,
+        transparent,
+        rgba(163, 163, 163, 0.25),
+        transparent
+    ) 1;
+}
+
+/* Keyboard accessibility */
+.footer-links a:focus-visible,
+.footer-contact-item a:focus-visible,
+.footer-map-link:focus-visible,
+.footer-social:focus-visible,
+.footer-logo-link:focus-visible {
+    outline: 2px solid #fb923c;
+    outline-offset: 5px;
+    border-radius: 4px;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .footer-card,
+    .footer-glow,
+    .footer-logo-link,
+    .footer-badge,
+    .footer-heading-line,
+    .footer-links a,
+    .footer-links a::after,
+    .footer-icon,
+    .footer-contact-item,
+    .footer-map,
+    .footer-map iframe,
+    .footer-map-link,
+    .footer-social {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+    .footer-map {
+        height: 220px;
+    }
+
+    .footer-card {
+        padding: 22px;
+    }
+
+    .footer-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 11px;
+    }
+}
+
+.mobile_sub_menu {
+    width: 100%;
+    padding-right: 12px;
+    padding-top: 8px;
+}
+
+.mobile_sub_menu:not(.hidden) {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+}
+
+.mobile_sub_menu > li,
+.mobile_sub_menu > li > a {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* ========================================
+   HEADER TEXT ENTRANCE ANIMATION
+======================================== */
+
+header .my_container > div > p {
+    opacity: 0;
+    animation: headerTextDrop 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* تیتر اصلی */
+header .my_container > div > p:first-child {
+    animation-delay: 0.15s;
+}
+
+/* متن توضیحات */
+header .my_container > div > p:last-child {
+    animation-delay: 0.35s;
+}
+
+@keyframes headerTextDrop {
+    from {
+        opacity: 0;
+        transform: translateY(-45px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* رعایت تنظیمات کاهش حرکت کاربر */
+@media (prefers-reduced-motion: reduce) {
+    header .my_container > div > p {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+
+/* حرکت شناور ظریف پترن بنرها */
+.banner-pattern {
+    transform-origin: center;
+    animation: banner-pattern-float 5s ease-in-out infinite;
+}
+
+@keyframes banner-pattern-float {
+    0%, 100% {
+        translate: 0 0;
+    }
+
+    50% {
+        translate: 0 -5px;
+    }
+}
+
+/* احترام به تنظیم کاهش حرکت کاربر */
+@media (prefers-reduced-motion: reduce) {
+    .banner-pattern {
+        animation: none;
+    }
+}
